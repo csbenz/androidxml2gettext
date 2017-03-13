@@ -1,7 +1,7 @@
 # androidxml2pot
-Simple Perl scripts to convert android xml strings to pot format and vice-versa
+Simple Perl scripts to convert android xml strings to gettext format and vice-versa
 
-### Convert from android xml to pot gettext
+### Convert from android xml to gettext
 `./xml2pot strings.xml output.pot`
 
 strings.xml is the android string xml and should be formatted as follows:
