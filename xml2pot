@@ -1,0 +1,28 @@
+#!/usr/bin/perl
+
+my $regex =  '<string name="(.*)">(.*)<\/string>';
+my $replace_backslash = s/\\//g;
+
+my $num_args = $#ARGV + 1;
+if($num_args != 2) {
+    print "Missing argument: you must specify the file to convert and the output file!\n\n";
+    exit;
+}
+
+my $filename = $ARGV[0];
+my $output = $ARGV[1];
+
+open my $xml, '<', $filename or die "Can't open file $filename";
+open my $pot, '>', $output or die "Can't write to file $output";
+
+my @lines = <$xml>;
+close $xml or die "Problem while closing file $xml";
+
+foreach my $line (@lines) {
+    $line =~ $replace_backslash;
+    if($line =~ $regex) {    
+        print $pot "\nmsgctxt \"$1\"\nmsgid \"$2\"\nmsgstr \"\"\n";
+    }
+}
+
+close $pot or die "Problem closing file $pot";
