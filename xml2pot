@@ -19,7 +19,7 @@ my @lines = <$xml>;
 close $xml or die "Problem while closing file $xml";
 
 foreach my $line (@lines) {
-    $line =~ $replace_backslash;
+    $line =~ s/\\//g;#$replace_backslash;
     if($line =~ $regex) {    
         print $pot "\nmsgctxt \"$1\"\nmsgid \"$2\"\nmsgstr \"\"\n";
     }
