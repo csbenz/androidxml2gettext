@@ -20,13 +20,13 @@ close INPUT or die "Problem while closing file $pot";
 open my $xml, '>', $output or die "Can't write to file $output";
 
 print $xml "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
-print $xml "<ressources>\n\n";
+print $xml "<resources>\n\n";
 
 
 while($potstring =~ /msgctxt "(.*)"\nmsgid "(.*)"\nmsgstr "(.*)"/g) {
         print $xml "\t<string name=\"$1\">$3</string>\n";    
 }
 
-print $xml "\n<ressources>\n";
+print $xml "\n</resources>\n";
 
 close $xml or die "Problem closing file $pot";
